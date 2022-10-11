@@ -60,12 +60,12 @@ if(isset($_POST['update_post'])){
 <form action="" method="post" enctype="multipart/form-data">
     
     <div class="form-group">
-        <label for="title">Post Title</label>
-        <input value="<?php echo $post_title; ?>" type="text" class="form-control" name="title">
+        <label for="post_title">Post Title</label>
+        <input value="<?php echo $post_title; ?>" type="text" class="form-control" name="post_title">
     </div>
 
     <div class="form-group">
-        <select name="post_category" id="">
+        <select name="post_category_id" id="">
             <?php
                  $query = "SELECT * FROM categories ";
                  $select_categories = mysqli_query($connection, $query);
@@ -83,8 +83,8 @@ if(isset($_POST['update_post'])){
     </div>
 
     <div class="form-group">
-        <label for="author">Post Author</label>
-        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="author">
+        <label for="post_author">Post Author</label>
+        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author">
     </div>
 
     <div class="form-group">
