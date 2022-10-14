@@ -14,7 +14,7 @@
 
             <?php
             
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts ";
             $select_all_posts_query = mysqli_query($connection, $query);
             while($row = mysqli_fetch_assoc($select_all_posts_query)) {
                 $post_id = $row['post_id'];
