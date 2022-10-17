@@ -3,6 +3,17 @@
 <?php include "../includes/db.php" ?>
 <?php include "functions.php" ?>
 
+<?php
+
+if(isset($_SESSION['user_role'])) {
+    if($_SESSION['user_role' == 'subcriber']) {
+        header("Location: ../index.php");
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
