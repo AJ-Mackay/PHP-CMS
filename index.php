@@ -25,7 +25,7 @@
                 $post_content = substr($row['post_content'], 0, 100);
                 $post_status = $row['post_status'];
 
-                if($post_status !== 'published'){
+                if($post_status != 'published'){
                     echo "<h1 class='text-center'>No Posts to show, Sorry.</h1>";
                 } else {
 
