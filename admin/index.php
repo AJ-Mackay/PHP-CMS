@@ -32,6 +32,8 @@
                     <div class="col-xs-9 text-right">
                         <?php
 
+                        $per_page = 2;
+
                         if(isset($_GET['page'])) {
                             $page = $_GET['page'];
                         } else {
@@ -41,16 +43,16 @@
                         if($page == "" || $page == 1) {
                             $page_1 = 0;
                         } else {
-                            $page_1 = ($page * 5) - 5;
+                            $page_1 = ($page * $per_page) - $per_page;
                         }
 
                         $post_query_count = "SELECT * FROM posts";
                         $find_count = mysqli_query($connection, $post_query_count);
                         $count = mysqli_num_rows($find_count);
 
-                        $count = ceil($count / 5);
+                        $count = ceil($count / $per_page);
 
-                        $query = "SELECT * FROM posts LIMIT $page_1, 5";
+                        $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
                         $select_all_posts = mysqli_query($connection, $query);
                         $post_count = mysqli_num_rows($select_all_posts);
                         echo "<div class='huge'>{$post_count}</div>";
