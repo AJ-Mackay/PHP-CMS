@@ -31,6 +31,11 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <?php
+
+                        $post_query_count = "SELECT * FROM posts";
+                        $find_count = mysqli_query($connection, $post_query_count);
+                        $count = mysqli_num_rows($find_count);
+
                         $query = "SELECT * FROM posts ";
                         $select_all_posts = mysqli_query($connection, $query);
                         $post_count = mysqli_num_rows($select_all_posts);
