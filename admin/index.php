@@ -36,6 +36,8 @@
                         $find_count = mysqli_query($connection, $post_query_count);
                         $count = mysqli_num_rows($find_count);
 
+                        $count = ceil($count / 5);
+
                         $query = "SELECT * FROM posts ";
                         $select_all_posts = mysqli_query($connection, $query);
                         $post_count = mysqli_num_rows($select_all_posts);
@@ -203,6 +205,17 @@
         <!-- /#page-wrapper -->
 
     </div>
+
+    <ul class="pager">
+        <?php
+        
+            for($i = 1; $i <= $count; $i++) {
+                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+            }
+
+        ?>
+    </ul>
+
     <!-- /#wrapper -->
 
     <!-- jQuery -->
