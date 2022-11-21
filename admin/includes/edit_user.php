@@ -24,25 +24,10 @@ if(isset($_POST['edit_user'])){
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
 
-    // $post_image = $_FILES['image']['name'];
-    // $post_image_temp = $_FILES['image']['tmp_name'];
 
     $username = $_POST['username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-    // $post_date = date('d-m-y');
-
-    // move_uploaded_file($post_image_temp, "../images/$post_image");
-
-    $query = "SELECT randSalt FROM users";
-    $select_randSalt_query = mysqli_query($connection, $query);
-    if(!$select_randSalt_query){
-        die("Query Failed" . mysqli_error($connection));
-    }
-
-    $row = mysqli_fetch_array($select_randSalt_query);
-    $salt = $row['randSalt'];
-    $hashed_password = crypt($user_password, $salt);
 
     $query = "UPDATE users SET ";
     $query .= "user_firstname = '{$user_firstname}', ";
@@ -55,7 +40,17 @@ if(isset($_POST['edit_user'])){
 
     $edit_user_query = mysqli_query($connection, $query);
 
-    confirm($edit_user_query);
+    if(!empty($user_password)) {
+
+    $query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id ";
+    $get_user = mysqli_query($connection, $query_password);
+    confirm($get_user);
+
+    $row = mysqli_fetch_array($get_user);
+
+    $db_user_password = $row['user_password'];
+
+    }
 }
 
 ?>
@@ -85,13 +80,6 @@ if(isset($_POST['edit_user'])){
             ?> 
         </select>
     </div>
-
-
-
-    <!-- <div class="form-group">
-        <label for="post_image">User Image</label>
-        <input type="file" name="image">
-    </div> -->
 
     <div class="form-group">
         <label for="post_tags">Username</label>
