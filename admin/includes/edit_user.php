@@ -29,16 +29,7 @@ if(isset($_POST['edit_user'])){
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
-    $query = "UPDATE users SET ";
-    $query .= "user_firstname = '{$user_firstname}', ";
-    $query .= "user_lastname = '{$user_lastname}', ";
-    $query .= "user_role = '{$user_role}', ";
-    $query .= "username = '{$username}', ";
-    $query .= "user_email = '{$user_email}', ";
-    $query .= "user_password = '{$hashed_password}' ";
-    $query .= "WHERE user_id = {$the_user_id}";
-
-    $edit_user_query = mysqli_query($connection, $query);
+    
 
     if(!empty($user_password)) {
 
@@ -49,8 +40,24 @@ if(isset($_POST['edit_user'])){
     $row = mysqli_fetch_array($get_user);
 
     $db_user_password = $row['user_password'];
-
+ 
+    if($db_user_password != $user_password) {
+        $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
     }
+
+    $query = "UPDATE users SET ";
+    $query .= "user_firstname = '{$user_firstname}', ";
+    $query .= "user_lastname = '{$user_lastname}', ";
+    $query .= "user_role = '{$user_role}', ";
+    $query .= "username = '{$username}', ";
+    $query .= "user_email = '{$user_email}', ";
+    $query .= "user_password = '{$hashed_password}' ";
+    $query .= "WHERE user_id = {$the_user_id}";
+
+    $edit_user_query = mysqli_query($connection, $query);
+}
+
+  
 }
 
 ?>
