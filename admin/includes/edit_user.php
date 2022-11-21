@@ -23,13 +23,9 @@ if(isset($_POST['edit_user'])){
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
-
-
     $username = $_POST['username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-
-    
 
     if(!empty($user_password)) {
 
@@ -58,6 +54,8 @@ if(isset($_POST['edit_user'])){
 }
 
   
+} else {
+    header("Location: index.php");
 }
 
 ?>
@@ -100,7 +98,7 @@ if(isset($_POST['edit_user'])){
 
     <div class="form-group">
         <label for="post_content">Password</label>
-        <input type="password" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+        <input autocomplete="off" type="password" class="form-control" name="user_password">
     </div>
 
     <div class="form-group">
