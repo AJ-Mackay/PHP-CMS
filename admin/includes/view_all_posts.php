@@ -143,7 +143,7 @@ if(isset($_POST['checkBoxArray'])){
                     echo "<td>{$post_date}</td>";
                     echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-                    echo "<td><a rel='$post_id' href='' class='delete_link'>Delete</a></td>";
+                    echo "<td><a rel='$post_id' href='javascript:void(0)' class='delete_link'>Delete</a></td>";
                     // echo "<td><a onClick=\"javascript: return confirm('Are you sure?'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
                     echo "<td><a href='posts.php?reset={$post_id}'>{$post_views_count}</a></td>";
                     echo "</tr>";
@@ -178,8 +178,9 @@ if(isset($_GET['reset'])){
     $(document).ready(function(){
         $(".delete_link").on('click', function(){
             var id = $(this).attr("rel");
-
-            alert(id);
+            var delete_url = "posts.php?delete=" + id + "";
+            $(".modal_delete_link").attr("href", delete_url);
+            $("#myModal").modal('show');
         });
     });
 </script>
