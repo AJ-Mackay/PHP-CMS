@@ -7,7 +7,7 @@
     $to = "rose.or.rope@gmail.com";
     $subject = $_POST['subject'];
     $body = $_POST['body'];
-    $header = $_POST['email'];
+    $header = "From: " . $_POST['email'];
 
     mail($to, $subject, $body, $header);
  }
