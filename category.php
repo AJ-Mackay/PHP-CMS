@@ -16,10 +16,13 @@
             
             if(isset($_GET['category'])){
                 $post_category_id = $_GET['category'];
-            }
 
-            $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id ";
+            $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id AND post_status = 'published' ";
             $select_all_posts_query = mysqli_query($connection, $query);
+
+            if(mysqli_num_rows($select_all_posts_query) < 1){
+                echo "<h1 class='text-center'>No Posts Available</h1>";
+            } else {
             while($row = mysqli_fetch_assoc($select_all_posts_query)) {
                 $post_id = $row['post_id'];
                 $post_title = $row['post_title'];
@@ -28,7 +31,7 @@
                 $post_image = $row['post_image'];
                 $post_content = substr($row['post_content'], 0, 100);
 
-            ?>
+            } ?>
 
                 <h1 class="page-header">
                     Page Heading
@@ -51,7 +54,9 @@
 
                 <hr>
 
-            <?php } ?>   
+            <?php } } else {
+                header("Location: index.php");
+            }?>   
 
               
 

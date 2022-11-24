@@ -33,7 +33,7 @@ $find_count = mysqli_query($connection, $post_query_count);
 $count = mysqli_num_rows($find_count);
 
 if($count < 1) {
-    echo "NO POSTS";
+    echo "<h1 class='text-center'>No Posts Available</h1>";
 } else {
 
 $count = ceil($count / $per_page);
