@@ -36,7 +36,7 @@ if(isset($_POST['checkBoxArray'])){
                 }
 
                 if(empty($post_tags)) {
-                    $post_tags = "No tags";
+                    $post_tags = "No tag";
                 }
 
                 $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_user, post_date, post_image, post_content, post_tags, post_status) ";
