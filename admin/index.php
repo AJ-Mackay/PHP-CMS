@@ -29,33 +29,7 @@
                         <i class="fa fa-file-text fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <?php
-
-                        $per_page = 2;
-
-                        if(isset($_GET['page'])) {
-                            $page = $_GET['page'];
-                        } else {
-                            $page = "";
-                        }
-
-                        if($page == "" || $page == 1) {
-                            $page_1 = 0;
-                        } else {
-                            $page_1 = ($page * $per_page) - $per_page;
-                        }
-
-                        $post_query_count = "SELECT * FROM posts";
-                        $find_count = mysqli_query($connection, $post_query_count);
-                        $count = mysqli_num_rows($find_count);
-
-                        $count = ceil($count / $per_page);
-
-                        $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
-                        $select_all_posts = mysqli_query($connection, $query);
-                        $post_count = mysqli_num_rows($select_all_posts);
-                        echo "<div class='huge'>{$post_count}</div>";
-                         ?>
+                        <div class='huge'><?php echo $post_count = recordCount('posts'); ?></div>;
                         <div>Posts</div>
                     </div>
                 </div>
@@ -77,12 +51,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                    <?php
-                        $query = "SELECT * FROM comments ";
-                        $select_all_comments = mysqli_query($connection, $query);
-                        $comment_count = mysqli_num_rows($select_all_comments);
-                        echo "<div class='huge'>{$comment_count}</div>";
-                         ?>
+                    <div class='huge'><?php echo $comment_count = recordCount('comments'); ?></div>;
                       <div>Comments</div>
                     </div>
                 </div>
@@ -104,12 +73,7 @@
                         <i class="fa fa-user fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                    <?php
-                        $query = "SELECT * FROM users ";
-                        $select_all_users = mysqli_query($connection, $query);
-                        $user_count = mysqli_num_rows($select_all_users);
-                        echo "<div class='huge'>{$user_count}</div>";
-                         ?>
+                    <div class='huge'><?php echo $user_count = recordCount('users'); ?></div>;
                         <div> Users</div>
                     </div>
                 </div>
@@ -131,12 +95,7 @@
                         <i class="fa fa-list fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                    <?php
-                        $query = "SELECT * FROM categories ";
-                        $select_all_categories = mysqli_query($connection, $query);
-                        $category_count = mysqli_num_rows($select_all_categories);
-                        echo "<div class='huge'>{$category_count}</div>";
-                         ?>
+                    <div class='huge'><?php echo $category_count = recordCount('categories'); ?></div>;
                          <div>Categories</div>
                     </div>
                 </div>
