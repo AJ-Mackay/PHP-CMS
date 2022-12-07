@@ -151,4 +151,45 @@ function username_exists($username){
     }
 }
 
+function email_exists($email){
+    global $connection;
+    $query = "SELECT user_email FROM users WHERE user_email = '$email' ";
+    $result = mysqli_query($connection, $query);
+    confirm($result);
+
+    if(mysqli_num_rows($result) > 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function register_user($username, $email, $password){
+    global $connection;
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if(username_exists($username)){
+        $message = "user already exists";
+    }
+
+    if(!empty($username) && !empty($email) && !empty($password)) {
+        $username = mysqli_real_escape_string($connection, $username);
+        $email = mysqli_real_escape_string($connection, $email);
+        $password = mysqli_real_escape_string($connection, $password);
+
+        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+    
+        $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber' )";
+        $register_user_query = mysqli_query($connection, $query);
+        confirm($register_user_query);
+
+        $message = "Your registration has been submitted";
+    } else {
+        $message = "Fields cannot be empty";
+    }
+ }
+
 ?>
