@@ -4,7 +4,40 @@
  <?php
  
  if(isset($_POST['submit'])){
-    
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    $error = [
+        'username' => '',
+        'email' => '',
+        'password' => ''
+    ];
+
+    if(strlen($username) < 4){
+        $error['username'] = 'Username must be more than 4 characters';
+    }
+
+    if($username == ''){
+        $error['username'] = 'Username field cannot be empty';
+    }
+
+    if(username_exists($username)){
+        $error['username'] = 'Username already exists';
+    }
+
+    if($email == ''){
+        $error['email'] = 'Email field cannot be empty';
+    }
+
+    if(email_exists($email)){
+        $error['email'] = 'User email already exists, <a href="index.php">Please Log in</a>';
+    }
+
+    if($password == ''){
+        $error['password'] = 'Password cannot be empty';
+    }
+}
  
  ?>
 
