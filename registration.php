@@ -3,7 +3,7 @@
 
  <?php
  
- if(isset($_POST['submit'])){
+ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -40,9 +40,13 @@
 
     foreach($error as $key => $value){
         if(empty($value)){
-            register_user($username, $email, $password);
+            unset($error[$key]);
             login_user($username, $password);
         }
+    }
+
+    if (empty($error)){
+        register_user($username, $email, $password);
     }
 }
  
