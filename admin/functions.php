@@ -211,9 +211,9 @@ function register_user($username, $email, $password){
      $_SESSION['lastname'] = $db_user_lastname;
      $_SESSION['user_role'] = $db_user_role;
  
-     header("Location: ../admin");
+     redirect("/cms/admin");
     } else {
-     header("Location: ../index.php");
+     redirect("/cms/index.php");
     }
  }
 ?>
