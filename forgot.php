@@ -1,6 +1,24 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
+<?php
+
+if(!ifItIsMethod('get') || !$_GET['forgot']){
+    redirect('index.php');
+}
+
+if(ifItIsMethod('post')){
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+        $length = 50;
+        $token = bin2hex(openssl_random_pseudo_bytes($length));
+
+        
+    }
+}
+
+
+?>
 
 <!-- Page Content -->
 <div class="container">
