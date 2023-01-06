@@ -1,5 +1,5 @@
 <?php use PHPMailer\PHPMailer\PHPMailer; ?>
-<?php require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
+<?php require './vendor/autoload.php'; ?>
 <?php require './classes/Config.php'; ?>
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
@@ -37,6 +37,7 @@ $mail->Password = Config::SMTP_PASSWORD;
 $mail->SMTPSecure = 'tls';
 $mail->Port = Config::SMTP_PORT;
 $mail->isHTML(true);
+$mail->CharSet = 'UTF-8';
 
 $mail->setFrom('edwin@codingfaculty.com', 'Edwin Diaz');
 $mail->addAddress($email);
