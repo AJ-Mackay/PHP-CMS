@@ -43,10 +43,10 @@ $mail->setFrom('edwin@codingfaculty.com', 'Edwin Diaz');
 $mail->addAddress($email);
 
 $mail->Subject = 'This is a test email';
-$mail->Body = 'Email body';
+$mail->Body = 'Please click to reset your password <a href="http://localhost:8080/cms/reset.php?email" '.$email. '&token=' .$token.' "></a>';
 
 if($mail->send()){
-    echo "It was sent!";
+    $emailSent = true;
 } else {
     echo "Not Sent!";
 }
