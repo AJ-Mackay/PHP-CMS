@@ -1,3 +1,6 @@
+<?php use PHPMailer\PHPMailer\PHPMailer; ?>
+<?php require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
+<?php require './classes/Config.php'; ?>
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
@@ -24,7 +27,28 @@ if(ifItIsMethod('post')){
     }
 }
 
+$mail = new PHPMailer();
 
+$mail->isSMTP();
+$mail->Host = Config::SMTP_HOST;
+$mail->SMTPAuth = true;
+$mail->Username = Config::SMTP_USER;
+$mail->Password = Config::SMTP_PASSWORD;
+$mail->SMTPSecure = 'tls';
+$mail->Port = Config::SMTP_PORT;
+$mail->isHTML(true);
+
+$mail->setFrom('edwin@codingfaculty.com', 'Edwin Diaz');
+$mail->addAddress($email);
+
+$mail->Subject = 'This is a test email';
+$mail->Body = 'Email body';
+
+if($mail->send()){
+    echo "It was sent!";
+} else {
+    echo "Not Sent!";
+}
 ?>
 
 <!-- Page Content -->
