@@ -3,12 +3,12 @@
 
 <?php 
 
-// if(!isset($_GET['email']) && !isset($_GET['token'])){
-//     redirect('index');
-// }
+if(!isset($_GET['email']) && !isset($_GET['token'])){
+    redirect('index');
+}
 
 if($stmt = mysqli_prepare($connection, 'SELECT username, user_email, token FROM users WHERE token=?')){
-    mysqli_stmt_bind_param($stmt, "s", $token);
+    mysqli_stmt_bind_param($stmt, "s", $_GET['$token']);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $username, $user_email, $token);
     mysqli_stmt_fetch($stmt);
@@ -24,14 +24,15 @@ if($stmt = mysqli_prepare($connection, 'SELECT username, user_email, token FROM 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
 
             if($stmt = mysqli_prepare($connection, "UPDATE users SET token ='', user_password='{$hashedPassword}' WHERE user_email=?")){
-                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_bind_param($stmt, "s", $_GET['$email']);
                 mysqli_stmt_execute($stmt);
 
                 if(mysqli_stmt_affected_rows($stmt) >= 1){
-                    echo "it works";
-                } else {
-                    echo "bad query";
+                    redirect('/cms/login.php');
                 }
+
+                mysqli_stmt_close($stmt);
+                $verified = true;
             }
         }
     }
@@ -80,7 +81,6 @@ if($stmt = mysqli_prepare($connection, 'SELECT username, user_email, token FROM 
             </div>
         </div>
     </div>
-
 
     <hr>
 
