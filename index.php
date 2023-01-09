@@ -79,7 +79,7 @@ echo "<div class='huge'>{$post_count}</div>";
                 <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
                 <hr>
                 <a href="post.php?p_id=<?php echo $post_id; ?>">
-                <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+                <img class="img-responsive" src="images/<?php echo imagePlaceholder($post_image); ?>" alt="">
                 </a>
                 <hr>
                 <p><?php echo $post_content; ?></p>
