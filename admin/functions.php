@@ -1,5 +1,12 @@
 <?php
 
+function currentUser(){
+    if(isset($_SESSION['username'])){
+        return $_SESSION['username'];
+    }
+    return false;
+}
+
 function escape($string){
     global $connection;
     return mysqli_real_escape_string($connection, trim($string));
