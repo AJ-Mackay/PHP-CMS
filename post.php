@@ -13,9 +13,7 @@ if(isset($_POST['liked'])){
     $post = mysqli_fetch_array($postResult);
     $likes = $post['likes'];
 
-    if(mysqli_num_rows($postResult) >= 1) {
-        echo $post['post_id'];
-    }
+    mysqli_query($connection, "UPDATE posts SET likes=$likes+1 WHERE post_id= $post_id");
 }
 
 ?>
