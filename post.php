@@ -107,7 +107,7 @@ if(isset($_POST['unliked'])){
                 </div>
 
                 <div class="row">
-                    <p class="pull-right">Likes: 10</p>
+                    <p class="pull-right">Likes: <?php getPostLikes($the_post_id); ?></p>
                 </div>
 
                 <div class="clearfix"></div>
