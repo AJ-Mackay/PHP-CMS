@@ -32,11 +32,22 @@ function ifItIsMethod($method=null){
     return false;
 }
 
+function query($query){
+    global $connection;
+    return mysqli_query($connection, $query);
+}
+
 function isLoggedIn(){
     if(isset($_SESSION['user_role'])){
         return true;
     }
     return false;
+}
+
+function loggedInUserId(){
+    if(isLoggedIn()){
+        $result = query("SELECT * FROM users WHERE  username='" . $_SESSION['username'] . "'");
+    }
 }
 
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
