@@ -303,7 +303,15 @@ function get_all_user_categories(){
     return query("SELECT * FROM categories WHERE user_id=" . loggedInUserId() . "");
 }
 
- function countRecords($result){
+function get_all_user_published_posts(){
+    return query("SELECT * FROM posts WHERE user_id = " . loggedInUserId() . " AND post_status = 'published'");
+}
+
+function get_all_user_draft_posts(){
+    return query("SELECT * FROM posts WHERE user_id = " . loggedInUserId() . " AND post_status = 'draft'");
+}
+
+function countRecords($result){
     return mysqli_num_rows($result);
- }
+}
 ?>
