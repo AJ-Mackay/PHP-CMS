@@ -311,6 +311,14 @@ function get_all_user_draft_posts(){
     return query("SELECT * FROM posts WHERE user_id = " . loggedInUserId() . " AND post_status = 'draft'");
 }
 
+function get_all_user_approved_comments(){
+    return query("SELECT * FROM posts INNER JOIN comments ON posts.post_id = comments.comment_post_id WHERE user_id =".loggedInUserId()." AND comment_status = 'approved'");
+}
+
+function get_all_user_unapproved_comments(){
+    return query("SELECT * FROM posts INNER JOIN comments ON posts.post_id = comments.comment_post_id WHERE user_id =".loggedInUserId()." AND comment_status = 'unapproved'");
+}
+
 function countRecords($result){
     return mysqli_num_rows($result);
 }

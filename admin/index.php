@@ -110,10 +110,10 @@
 
           <?php
           
-          $element_text = ['All Posts', 'Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Categories'];
-          $element_count = [$post_count, $published_post_count, $post_draft_count, $comment_count, $unapproved_comment_count, $category_count];
+          $element_text = ['All Posts', 'Active Posts', 'Draft Posts', 'Comments', 'Approved Comments', 'Pending Comments', 'Categories'];
+          $element_count = [$post_count, $published_post_count, $post_draft_count, $comment_count, $approved_comment_count, $unapproved_comment_count, $category_count];
 
-          for($i = 0; $i < 6; $i++) {
+          for($i = 0; $i < 7; $i++) {
             echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
           }
 
