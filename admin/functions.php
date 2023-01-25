@@ -1,11 +1,19 @@
 <?php
 
+function fetchRecords($result){
+    return mysqli_fetch_array($result);
+}
+
 function imagePlaceholder($image=null){
     if(!$image){
         return 'php.png';
     } else {
         return $image;
     }
+}
+
+function getUserName(){
+    return isset($_SESSION['username']) ? $_SESSION['username'] : null;
 }
 
 function currentUser(){
@@ -189,19 +197,17 @@ function checkUserRole($table, $column, $role){
     return mysqli_num_rows($result);
 }
 
-function is_admin($username){
-    global $connection;
-    $query = "SELECT user_role FROM users WHERE username = '$username' ";
-    $result = mysqli_query($connection, $query);
-    confirm($result);
-
-    $row = mysqli_fetch_array($result);
-
+function is_admin(){
+    if(isLoggedIn()){
+        $result = query("SELECT user_role FROM users WHERE user_id = ".$_SESSION['user_id']."");
+    $row = fetchRecords($result);
     if($row['user_role'] == 'admin'){
         return true;
     } else {
         return false;
     }
+    }
+    return false;
 }
 
 function username_exists($username){
@@ -271,6 +277,7 @@ function register_user($username, $email, $password){
      $password = crypt($password, $db_user_password);
  
      if(password_verify($password, $db_user_password)){
+      $_SESSION['user_id'] = $db_user_id;
       $_SESSION['username'] = $db_username;
       $_SESSION['firstname'] = $db_user_firstname;
       $_SESSION['lastname'] = $db_user_lastname;
