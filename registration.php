@@ -59,6 +59,15 @@
  
     <!-- Page Content -->
     <div class="container">
+
+    <form method="get" class="navbar-form navbar-right" id="language_form">
+        <div class="form-group">
+            <select name="lang" class="form-control" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+    </form>
     
 <section id="login">
     <div class="container">
@@ -95,6 +104,10 @@
 
         <hr>
 
-
+<script>
+    function changeLanguage(){
+        document.getElementById('language_form').submit();
+    }
+</script>
 
 <?php include "includes/footer.php";?>

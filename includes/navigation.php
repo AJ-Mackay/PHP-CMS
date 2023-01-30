@@ -37,7 +37,7 @@
                             echo "<li class='$category_class'><a href='/cms/category/{$cat_id}'>{$cat_title}</a></li>";
                         }
                     ?>
-
+<!-- 
                     <?php if(isLoggedIn()): ?>
                     <li>
                         <a href="/cms/admin">Admin</a>
@@ -49,7 +49,7 @@
                     <li>
                         <a href="/cms/login.php">Login</a>
                     </li>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
                     <li class='<?php echo $registration_class; ?>'>
                         <a href="/cms/registration">Registration</a>
