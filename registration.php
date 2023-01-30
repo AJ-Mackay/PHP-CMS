@@ -2,6 +2,20 @@
  <?php  include "includes/header.php"; ?>
 
  <?php
+
+ if(isset($_GET['lang'])){
+    $_SESSION['lang'] = $_GET['lang'];
+
+    if(isset($_SESSION['lang']) && $_SESSION['lang'] == $_GET['lang']){
+        echo "<script type='text/javascript'>location.reload();</script>";
+    }
+
+    if(isset($_SESSION['lang'])){
+        include "includes/languages" . $SESSION['lang'] . ".php";
+    } else {
+        include "includes/languages/en.php";
+    }
+ }
  
  if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = trim($_POST['username']);
